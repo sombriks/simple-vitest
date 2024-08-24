@@ -3,7 +3,7 @@ import Knex from "knex";
 export const db = Knex({
     client: 'sqlite3',
     useNullAsDefault: true,
-    debug: true,
+    debug: process.env.DB_DEBUG as unknown as boolean,
     connection: {
         filename: process.env.DB_URL
     }
@@ -33,7 +33,6 @@ export const seedDb = async () => {
         {description: 'walk the dog'},
         {description: 'wash the dishes'},
         {description: 'watch tv'},
-        {description: 'argue on the internet'},
         {description: 'pay bills'},
         {description: 'prepare dinner'}
     ])

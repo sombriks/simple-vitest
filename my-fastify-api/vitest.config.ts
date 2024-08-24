@@ -1,13 +1,14 @@
 import {defineConfig} from "vite";
+import {config} from 'dotenv'
 
 export default defineConfig({
     // @ts-ignore
     test: {
         // @ts-ignore
         env: {
-            // TODO load from .env files
             "NODE_ENV": "test",
-            "DB_URL":"./todos-test.db"
+            ...config({path: '.env'}).parsed,
+            ...config({path: '.env.test'}).parsed,
         }
     },
 })

@@ -21,6 +21,7 @@
     "@types/knex": "^0.16.1",
     "@types/node": "^22.5.0",
     "@vitest/coverage-v8": "^2.0.5",
+    "dotenv": "^16.4.5",
     "tsc": "^2.0.4",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4",

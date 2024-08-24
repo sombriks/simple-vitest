@@ -31,13 +31,14 @@ server.get('/todos/:id', async (req, res) => {
 
 server.get('/todos/count', async req => {
     const {q} = QuerySchema.parse(req.query)
-    return db('todos').whereLike('description', q).count('* as total')
+    const [result] = await db('todos').whereLike('description', `%${q}%`).count('* as total')
+    return result
 });
 
 server.post('/todos', async (req, res) => {
     const todo: Todo = TodoSchema.parse(req.body)
-    const result = await db('todos').insert(todo).returning("*").first()
-    res.status(201).header('location', `/todos/${result.id}`).send({message: 'created'})
+    const [result] = await db('todos').insert(todo).returning("*")
+    res.status(201).header('location', `/todos/${result.id}`).send(result)
 });
 
 server.put('/todos/:id', async (req, res) => {
