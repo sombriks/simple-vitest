@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="api-test:coverage" type="js.build_tools.npm" folderName="my-fastify-api">
+    <package-json value="$PROJECT_DIR$/my-fastify-api/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="test:coverage" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>
