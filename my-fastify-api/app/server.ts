@@ -1,9 +1,12 @@
 import Fastify, {type FastifyInstance} from 'fastify';
+import cors from '@fastify/cors'
 import {z} from "zod";
 import {db} from "./database";
 import {Todo, TodoSchema} from "./todo";
 
 export const server: FastifyInstance = Fastify({logger: true});
+
+server.register(cors, {});
 
 const ParamSchema = z.object({
     id: z.coerce.number().min(1, 'invalid id')
