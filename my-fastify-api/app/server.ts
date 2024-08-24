@@ -19,7 +19,7 @@ server.get('/status', async () => {
 
 server.get('/todos', async req => {
     const {q} = QuerySchema.parse(req.query)
-    return db('todos').whereLike('description', q)
+    return db('todos').whereLike('description', `%${q}%`)
 });
 
 server.get('/todos/:id', async (req, res) => {

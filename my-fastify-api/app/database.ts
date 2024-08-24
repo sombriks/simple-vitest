@@ -3,8 +3,9 @@ import Knex from "knex";
 export const db = Knex({
     client: 'sqlite3',
     useNullAsDefault: true,
+    debug: true,
     connection: {
-        filename: process.env.DB_URL!
+        filename: process.env.DB_URL
     }
 });
 
@@ -15,7 +16,7 @@ export const initDb = async () => {
             tb.increments('id').primary()
             tb.string('description').notNullable()
             tb.boolean('done').notNullable().defaultTo(false)
-            tb.timestamps()
+            tb.timestamps(true, true)
         });
     }
 }
