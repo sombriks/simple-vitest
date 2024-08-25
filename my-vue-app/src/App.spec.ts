@@ -19,7 +19,7 @@ describe('app tests', () => {
     })
 
     afterAll(() => {
-        component.unmount()
+        // component.unmount()
         server.close()
     })
 
