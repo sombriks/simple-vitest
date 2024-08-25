@@ -5,6 +5,7 @@ Simple, bare-bones application to sample fastify with typescript
 ## Requirements/Stack
 
 - fastify
+- zod
 - knex
 - sqlite3
 - typescript
