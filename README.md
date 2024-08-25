@@ -1,5 +1,7 @@
 # [simple-vitest][repo]
 
+[![CI](https://github.com/sombriks/simple-vitest/actions/workflows/ci.yml/badge.svg)](https://github.com/sombriks/simple-vitest/actions/workflows/ci.yml)
+
 Sample project to showcase [vitest][vitest]
 
 ## Modules

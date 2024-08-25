@@ -1,19 +1,26 @@
 import {afterAll, beforeAll, describe, expect, it} from "vitest";
 import {render, RenderResult} from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
+import {http, HttpResponse} from 'msw'
+import {setupServer, SetupServerApi} from 'msw/node'
 
 import App from "./App.vue";
 
 describe('app tests', () => {
 
     let component: RenderResult
+    let server: SetupServerApi
 
     beforeAll(() => {
+        server = setupServer(
+            http.get('http://mock-url:3000/todos', () => HttpResponse.json([]))
+        )
         component = render(App)
     })
 
     afterAll(() => {
         component.unmount()
+        server.close()
     })
 
     it('should have import.meta.env.MODE to be "test"', () => {

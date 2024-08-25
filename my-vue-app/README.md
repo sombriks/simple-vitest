@@ -31,3 +31,5 @@ npm run test:coverage
 ```
 
 ## Noteworthy
+
+- render/unmount component can be troublesome
