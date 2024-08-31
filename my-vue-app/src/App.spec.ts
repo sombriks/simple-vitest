@@ -2,19 +2,20 @@ import {afterAll, beforeAll, describe, expect, it} from "vitest";
 import {render, RenderResult} from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
 import {http, HttpResponse} from 'msw'
-import {setupServer, SetupServerApi} from 'msw/node'
+import {setupServer} from 'msw/node'
 
 import App from "./App.vue";
 
 describe('app tests', () => {
 
     let component: RenderResult
-    let server: SetupServerApi
+    const server = setupServer(
+        http.get('http://mock-url:3000/todos', () => HttpResponse.json([
+            {id: 777, description:'Walk the dog', done: true }
+        ]))
+    )
 
     beforeAll(() => {
-        server = setupServer(
-            http.get('http://mock-url:3000/todos', () => HttpResponse.json([]))
-        )
         server.listen()
         component = render(App)
     })
@@ -43,5 +44,10 @@ describe('app tests', () => {
     it('should search todos', async () => {
         const search = component.getByPlaceholderText('Search')
         expect(search).toBeTruthy()
+    })
+
+    it('should have one todo', async () => {
+        const id = component.getByText('#777')
+        expect(id).toBeTruthy()
     })
 })
