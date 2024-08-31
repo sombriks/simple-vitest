@@ -14,7 +14,7 @@ describe('app tests', () => {
     beforeAll(() => {
         server = setupServer(
             http.get('http://mock-url:3000/todos', () => HttpResponse.json([
-                {id: 777, description:'Walk the dog', done: true }
+                {id: 777, description: 'Walk the dog', done: true}
             ]))
         )
         server.listen()
@@ -22,9 +22,8 @@ describe('app tests', () => {
     })
 
     afterAll(() => {
-        vi.waitFor(() => server.close())
-
-        component.unmount()
+        vi.waitFor(() => component.unmount())
+        server.close()
     })
 
     it('should have import.meta.env.MODE to be "test"', () => {
