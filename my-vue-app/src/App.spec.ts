@@ -15,11 +15,12 @@ describe('app tests', () => {
         server = setupServer(
             http.get('http://mock-url:3000/todos', () => HttpResponse.json([]))
         )
+        server.listen()
         component = render(App)
     })
 
     afterAll(() => {
-        // component.unmount()
+        component.unmount()
         server.close()
     })
 
