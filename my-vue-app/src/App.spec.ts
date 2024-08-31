@@ -17,13 +17,13 @@ describe('app tests', () => {
                 {id: 777, description:'Walk the dog', done: true }
             ]))
         )
-
+        server.listen()
         component = render(App)
     })
 
     afterAll(() => {
-        // component.unmount()
         server.close()
+        component.unmount()
     })
 
     it('should have import.meta.env.MODE to be "test"', () => {
