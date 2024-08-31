@@ -1,4 +1,4 @@
-import {afterAll, beforeAll, describe, expect, it} from "vitest";
+import {afterAll, beforeAll, describe, expect, it, vi} from "vitest";
 import {render, RenderResult} from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
 import {http, HttpResponse} from 'msw'
@@ -21,7 +21,8 @@ describe('app tests', () => {
     })
 
     afterAll(() => {
-        component.unmount()
+        vi.waitFor(() => component.unmount())
+
         server.close()
     })
 
