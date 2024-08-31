@@ -46,8 +46,13 @@ describe('app tests', () => {
         expect(search).toBeTruthy()
     })
 
-    it('should have one todo', async () => {
+    it('should have one todo - check id', async () => {
         const id = component.getByText('#777')
         expect(id).toBeTruthy()
+    })
+
+    it('should have one todo - check input', async () => {
+        const field = component.getByDisplayValue('Walk the dog')
+        expect(field).toBeTruthy()
     })
 })
