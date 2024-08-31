@@ -13,8 +13,11 @@ describe('app tests', () => {
 
     beforeAll(() => {
         server = setupServer(
-            http.get('http://mock-url:3000/todos', () => HttpResponse.json([]))
+            http.get('http://mock-url:3000/todos', () => HttpResponse.json([
+                {id: 777, description:'Walk the dog', done: true }
+            ]))
         )
+
         component = render(App)
     })
 
@@ -42,5 +45,15 @@ describe('app tests', () => {
     it('should search todos', async () => {
         const search = component.getByPlaceholderText('Search')
         expect(search).toBeTruthy()
+    })
+
+    it('should have one todo - check id', async () => {
+        const id = component.getByText('#777')
+        expect(id).toBeTruthy()
+    })
+
+    it('should have one todo - check input', async () => {
+        const field = component.getByDisplayValue('Walk the dog')
+        expect(field).toBeTruthy()
     })
 })
